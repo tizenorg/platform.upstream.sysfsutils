@@ -8,26 +8,12 @@ Url:            http://linux-diag.sourceforge.net
 Source:         http://aleron.dl.sourceforge.net/sourceforge/linux-diag/%{name}-%{version}.tar.gz
 Source2:        baselibs.conf
 Provides:       libsysfs
-# bug437293
-%ifarch ppc64
-Obsoletes:      sysfsutils-64bit
-%endif
-#
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 This package's purpose is to provide a library for interfacing with the
 kernel's sys filesystem mounted at /sys. The library was an attempt to
 create a stable interface to sysfs, but it failed. It is still provided
 for the current users, but no new software should use this library.
-
-
-
-Authors:
---------
-    Ananth Mavinakayanahalli <ananth@in.ibm.com>
-    Daniel Stekloff <dsteklof@us.ibm.com>
-    Mohan Kumar <mohan@in.ibm.com>
 
 %package devel
 Summary:        Development files for libsysfs
@@ -62,15 +48,12 @@ rm -f %{buildroot}/%{_bindir}/testlibsysfs
 
 %postun -p /sbin/ldconfig
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root)
 /usr/bin/systool
 %{_mandir}/man1/systool.1.gz
 %{_libdir}/libsysfs.so.*
-%doc README ChangeLog
+%doc README 
 
 %files devel
 %defattr(-,root,root)
