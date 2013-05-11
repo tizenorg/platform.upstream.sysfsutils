@@ -49,6 +49,7 @@ rm -f %{buildroot}/%{_bindir}/testlibsysfs
 %postun -p /sbin/ldconfig
 
 %files
+%license COPYING
 %defattr(-,root,root)
 /usr/bin/systool
 %{_mandir}/man1/systool.1.gz
