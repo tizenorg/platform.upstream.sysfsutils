@@ -7,6 +7,7 @@ Release:        0
 Url:            http://linux-diag.sourceforge.net
 Source:         http://aleron.dl.sourceforge.net/sourceforge/linux-diag/%{name}-%{version}.tar.gz
 Source2:        baselibs.conf
+Source1001: 	sysfsutils.manifest
 Provides:       libsysfs
 
 %description
@@ -30,6 +31,7 @@ This package contains the development files for libsysfs.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %configure --disable-static --with-pic
@@ -49,6 +51,7 @@ rm -f %{buildroot}/%{_bindir}/testlibsysfs
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %license COPYING
 %defattr(-,root,root)
 /usr/bin/systool
@@ -57,6 +60,7 @@ rm -f %{buildroot}/%{_bindir}/testlibsysfs
 %doc README 
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %dir %{_includedir}/sysfs
 %{_includedir}/sysfs/libsysfs.h
